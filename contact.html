@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contact Form</title>
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Contact Us</h1>
+    <h2>Feel free to fill this form</h2>
+    <form id="contact-form" action="#" method="POST">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <span class="error" id="name-error"></span>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <span class="error" id="email-error"></span>
+      </div>
+      <div>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone">
+        <span class="error" id="phone-error"></span>
+      </div>
+      <div>
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+          <option value="">Please select</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="non-binary">Non-binary</option>
+          <option value="other">Other</option>
+        </select>
+        <span class="error" id="gender-error"></span>
+      </div>
+      <div>
+        <label for="country">Country:</label>
+        <select id="country" name="country" required>
+          <option value="">Please select</option>
+          <option value="usa">USA</option>
+          <option value="canada">Canada</option>
+          <option value="uk">UK</option>
+          <option value="australia">Australia</option>
+        </select>
+        <span class="error" id="country-error"></span>
+      </div>
+      <div>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        <span class="error" id="message-error"></span>
+      </div>
+      <button type="submit">Send</button>
+    </form>
+     <p>If you have any questions or comments, feel free to contact me by email or social media.</p>
+    <ul>
+      <li>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></li>
+      <li>Twitter: <a href="https://twitter.com/yourtwitter">https://twitter.com/yourtwitter</a></li>
+      <li>Facebook: <a href="https://www.facebook.com/yourfacebook">https://www.facebook.com/yourfacebook</a></li>
+      <li>Instagram: <a href="https://www.instagram.com/yourinstagram">https://www.instagram.com/yourinstagram</a></li>
+    </ul>
+
+    <script>
+      const form = document.getElementById('contact-form');
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const phoneInput = document.getElementById('phone');
+      const genderInput = document.getElementById('gender');
+      const countryInput = document.getElementById('country');
+      const messageInput = document.getElementById('message');
+      const nameError = document.getElementById('name-error');
+      const emailError = document.getElementById('email-error');
+      const phoneError = document.getElementById('phone-error');
+      const genderError = document.getElementById('gender-error');
+      const countryError = document.getElementById('country-error');
+      const messageError = document.getElementById('message-error');
+
+      form.addEventListener('submit', function(event) {
+        let valid = true;
+
+        // Validate name
+        if (nameInput.value === '') {
+          nameError.textContent = 'Name is required';
+          valid = false;
+        } else {
+          nameError.textContent = '';
+        }
+
+        // Validate email
+        if (emailInput.value === '') {
+          emailError.textContent = 'Email is required';
+          valid = false;
+        } else if (!/\S+@\S+\.\S+/.test(emailInput.value)) {
+  emailError.textContent = 'Invalid email address';
+      valid = false;
+    } else {
+      emailError.textContent = '';
+    }
+
+    // Validate phone number
+    if (phoneInput.value !== '' && !/^\d{10}$/.test(phoneInput.value)) {
+      phoneError.textContent = 'Invalid phone number (must be 10 digits)';
+      valid = false;
+    } else {
+      phoneError.textContent = '';
+    }
+
+    // Validate gender
+    if (genderInput.value === '') {
+      genderError.textContent = 'Gender is required';
+      valid = false;
+    } else {
+      genderError.textContent = '';
+    }
+
+    // Validate country
+    if (countryInput.value === '') {
+      countryError.textContent = 'Country is required';
+      valid = false;
+    } else {
+      countryError.textContent = '';
+    }
+
+    // Validate message
+    if (messageInput.value === '') {
+      messageError.textContent = 'Message is required';
+      valid = false;
+    } else {
+      messageError.textContent = '';
+    }
+
+    if (!valid) {
+      event.preventDefault();
+    }
+  });
+</script>
+  </body>
+</html>
